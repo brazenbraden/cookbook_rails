@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_27_132526) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_27_134220) do
   create_table "cookbook_recipes", force: :cascade do |t|
     t.integer "cookbook_id", null: false
     t.integer "recipe_id", null: false
@@ -45,6 +45,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_27_132526) do
     t.index ["recipe_id"], name: "index_recipe_ingredients_on_recipe_id"
   end
 
+  create_table "recipe_steps", force: :cascade do |t|
+    t.integer "recipe_id", null: false
+    t.text "description", null: false
+    t.integer "position", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipe_id"], name: "index_recipe_steps_on_recipe_id"
+  end
+
   create_table "recipes", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -55,4 +64,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_27_132526) do
   add_foreign_key "cookbook_recipes", "recipes"
   add_foreign_key "recipe_ingredients", "ingredients"
   add_foreign_key "recipe_ingredients", "recipes"
+  add_foreign_key "recipe_steps", "recipes"
 end
