@@ -12,7 +12,13 @@
   </head>
 
   <body>
+    <header>
+      <%= link_to  "Cookbooks", cookbooks_path %>
+      <%= link_to  "Recipes", recipes_path %>
+      <%= link_to  "Ingredients", ingredients_path %>
+    </header>
     <main class="container mx-auto mt-28 px-5 flex">
+      
       <%= yield %>
     </main>
   </body>

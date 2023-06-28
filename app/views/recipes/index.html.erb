@@ -9,6 +9,13 @@
   </div>
 
   <div id="recipes" class="min-w-full">
-    <%= render @recipes %>
+    <%- @recipes.each do |recipe| %>
+    <div class="mt-10 p-5 border-s-2 hover:cursor-pointer hover:bg-sky-200">
+        <a href="<%= recipe_path(recipe) %>" >
+          <h2 class="text-2xl font-bold"><%= recipe.name %></h2>
+          <p><%= recipe.blurb %></p>
+        </a>
+      </div>
+    <% end %>
   </div>
 </div>

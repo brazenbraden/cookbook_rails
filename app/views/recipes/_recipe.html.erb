@@ -4,6 +4,26 @@
     <%= recipe.name %>
   </p>
 
+  <div class="flex flex-row">
+    <div class="basis-1/4">
+      <h2 class="text-xl font-bold mb-4">Ingredients</h2>
+        <%- recipe.ingredients.each do |ingredient| %>
+          <div class="flex flex-row">
+            <span class="basis-1/2"><%= number_to_human(ingredient.recipe_ingredients.first.quantity, units: { unit: "g" }) %>
+            <span class="basis-1/2"><%= ingredient.name %></span>
+          </div>
+        <% end %>
+    </div>
+
+    <div class="basis-3/4">
+      <h2 class="text-xl font-bold mb-4">Steps</h2>
+      <%- recipe.recipe_steps.each do |step| %>
+        <p><%= step.description %></p>
+      <% end %>
+    </div>
+  </div>
+
+
   <% if action_name != "show" %>
     <%= link_to "Show this recipe", recipe, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <%= link_to 'Edit this recipe', edit_recipe_path(recipe), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
