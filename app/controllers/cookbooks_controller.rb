@@ -20,6 +20,7 @@ class CookbooksController < ApplicationController
 
     respond_to do |format|
       if @cookbook.save
+        format.turbo_stream
         format.html { redirect_to cookbook_url(@cookbook), notice: "Cookbook was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
